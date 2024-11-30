@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bathroom Quote Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+  <div class="bathroom-layout">
+    <div class="zoom-container" id="zoom-container">
+      <div class="section protective-measures" onclick="startQuestion('protective-measures')">Protective Measures</div>
+      <div class="section demo" onclick="startQuestion('demo')">Demo Options</div>
+      <div class="section shower" onclick="startQuestion('shower')">Shower Options</div>
+      <div class="section shower-plumbing" onclick="startQuestion('shower-plumbing')">Shower Plumbing</div>
+      <div class="section tub" onclick="startQuestion('tub')">Tub Options</div>
+      <div class="section flooring" onclick="startQuestion('flooring')">Flooring Options</div>
+      <div class="section drywall" onclick="startQuestion('drywall')">Drywall Options</div>
+      <div class="section paint" onclick="startQuestion('paint')">Paint Options</div>
+      <div class="section vanity" onclick="startQuestion('vanity')">Vanity Install</div>
+      <div class="section toilet" onclick="startQuestion('toilet')">Toilet Removal & Install</div>
+    </div>
+  </div>
+  <div class="cart">
+    <h3>Your Estimate</h3>
+    <div class="labor-section">
+      <h4>Labor Costs</h4>
+      <ul id="labor-cart-items"></ul>
+    </div>
+    <div class="material-section">
+      <h4>Material Costs</h4>
+      <ul id="material-cart-items"></ul>
+    </div>
+    <div class="total">Total: $<span id="total">0</span></div>
+    <button id="submitBidButton" disabled>Finish Bid</button>
+  </div>
+</div>
+
+<!-- Initial Welcome Popup -->
+<div id="welcome-popup" class="popup">
+  <h3>Welcome to the Bathroom Quote Calculator!</h3>
+  <p>We are excited to help you estimate the cost of remodeling your standard bathroom! This tool is designed to give you an estimate that is 95% accurate for most standard bathrooms. For more customized options or unique layouts, an in-person consultation may be required.</p>
+  <p>Please follow each question to the end to receive an itemized estimate of your project.</p>
+  <button onclick="closeWelcomePopup()">Let's Get Started!</button>
+</div>
+
+<!-- Question Popup -->
+<div id="popup" class="popup">
+  <h3 id="popup-title">
+    <span id="progress-text"></span> - Choose an Option
+  </h3>
+  <div id="popup-buttons"></div>
+  <button id="backButton" onclick="goBack()">Back</button>
+</div>
+
+<!-- Overlay for popups -->
+<div id="overlay" class="overlay"></div>
+
+<!-- Materials Added Popup -->
+<div id="materials-popup" class="popup">
+  <h3>Materials Added</h3>
+  <div id="materials-list"></div>
+  <button onclick="closeMaterialsPopup()">OK</button>
+</div>
+
+<!-- Chatbot Container -->
+<div id="chatbot-container" class="chatbot-container" style="display: none;">
+  <div id="chatbot-messages"></div>
+  <input type="text" id="chatbot-input" placeholder="Ask me anything..." onkeypress="handleChatInput(event)">
+  <button onclick="sendChat()">Send</button>
+  <button onclick="toggleChatbot()">Close</button>
+</div>
+
+<button onclick="toggleChatbot()" style="position: fixed; bottom: 20px; right: 20px;">Chat with us!</button>
+
+<!-- Lead Form Popup -->
+<div id="lead-form-popup" class="popup">
+  <h3>Almost Done! Please Provide Your Contact Information</h3>
+  <form id="lead-form">
+    <label for="lead-name">Name:</label>
+    <input type="text" id="lead-name" name="lead-name" required><br><br>
+    
+    <label for="lead-phone">Phone Number:</label>
+    <input type="tel" id="lead-phone" name="lead-phone" required><br><br>
+    
+    <label for="lead-address">Address:</label>
+    <input type="text" id="lead-address" name="lead-address" required><br><br>
+    
+    <label for="lead-questions">Other Questions/Comments:</label><br>
+    <textarea id="lead-questions" name="lead-questions" rows="4"></textarea><br><br>
+    
+    <button type="button" onclick="submitLeadForm()">Submit</button>
+  </form>
+</div>
+
+<script src="script1.js"></script>
+</body>
+</html>

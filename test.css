@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background-color: #add8e6;
+  }
+  
+  .container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .zoom-container {
+    position: absolute;
+    width: 3000px;
+    height: 2000px;
+    transform: translate(-20px, -20px) scale(0.5);
+    transform-origin: 0 0;
+    transition: transform 1s ease-in-out;
+  }
+  
+  .node {
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .node:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .protective-measures { top: 80px; left: 650px; width: 400px; height: 250px;}
+  .demo { top: 373px; left: 650px; width: 400px; height: 250px;}
+  .shower { top: 80px; left: 150px; width: 400px; height: 550px;}
+  .shower-plumbing { top: 675px; left: 150px; width: 400px; height: 250px;}
+  .tub { top: 973px; left: 150px; width: 400px; height: 250px;}
+  .flooring { top: 80px; left: 1143px; width: 400px; height: 250px;}
+  .drywall { top: 373px; left: 1143px; width: 400px; height: 250px;}
+  .paint { top: 675px; left: 1143px; width: 400px; height: 250px;}
+  .vanity-install { top: 675px; left: 650px; width: 400px; height: 250px; }
+  .toilet-removal { top: 973px; left: 1143px; width: 400px; height: 250px; }
+  
+  @media only screen and (max-width: 768px) {
+    .budget-cart {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 0;
+    }
+  }
+  
+  @media only screen and (min-width: 769px) {
+    .budget-cart {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      width: 200px;
+    }
+  }
+  
+  @media only screen and (max-width: 390px) {
+    .protective-measures { top: 80px; left: 330px; width: 200px; height: 250px;}
+    .demo { top: 350px; left: 330px; width: 200px; height: 250px;}
+    .shower { top: 892px; left: 250px; width: 350px; height: 250px;}
+    .shower-plumbing { top: 350px; left: 105px; width: 200px; height: 250px;}
+    .tub { top: 620px; left: 105px; width: 200px; height: 250px;}
+    .flooring { top: 80px; left: 555px; width: 200px; height: 250px;}
+    .drywall { top: 350px; left: 555px; width: 200px; height: 250px;}
+    .paint { top: 620px; left: 555px; width: 200px; height: 250px;}
+    .vanity-install { top: 620px; left: 330px; width: 200px; height: 250px;}
+    .toilet-removal { top: 80px; left: 105px; width: 200px; height: 250px;}
+  }
+  
+  .popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  
+  .popup.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  
+  .node-total {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  

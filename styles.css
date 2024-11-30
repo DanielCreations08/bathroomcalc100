@@ -1,0 +1,227 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background-color: #f5f5f5;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.bathroom-layout {
+  position: relative;
+  width: 70%;
+  height: 100vh;
+  background: url('bathroom-placeholder.jpg') no-repeat center/cover;
+  overflow: hidden;
+}
+
+.zoom-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  transition: transform 3s ease-in-out;
+}
+
+.section {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 5px;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  border: 2px solid #fff; /* Added to make the sections more visible */
+}
+
+.section.protective-measures {
+  top: 50px;
+  left: 300px;
+  width: 200px;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.6); /* Black */
+}
+
+.section.demo {
+  top: 200px;
+  left: 300px;
+  width: 200px;
+  height: 100px;
+  background-color: rgba(139, 69, 19, 0.6); /* Brown */
+}
+
+.section.shower {
+  top: 50px;
+  left: 50px;
+  width: 200px;
+  height: 300px;
+  background-color: rgba(0, 0, 255, 0.6); /* Blue */
+}
+
+.section.shower-plumbing {
+  top: 400px;
+  left: 50px;
+  width: 200px;
+  height: 100px;
+  background-color: rgba(0, 100, 255, 0.6); /* Light Blue */
+}
+
+.section.tub {
+  bottom: 50px;
+  left: 50px;
+  width: 200px;
+  height: 100px;
+  background-color: rgba(0, 255, 0, 0.6); /* Green */
+}
+
+.section.flooring {
+  bottom: 50px;
+  right: 50px;
+  width: 200px;
+  height: 100px;
+  background-color: rgba(255, 165, 0, 0.6); /* Orange */
+}
+
+.section.drywall {
+  top: 200px;
+  right: 50px;
+  width: 150px;
+  height: 100px;
+  background-color: rgba(128, 0, 128, 0.6); /* Purple */
+}
+
+.section.paint {
+  top: 350px;  /* Adjust based on where you want the Paint section to appear */
+  right: 50px;
+  width: 150px;
+  height: 100px;
+  background-color: rgba(255, 165, 0, 0.6); /* Orange for distinction */
+}
+
+
+.section.vanity {
+  top: 350px;
+  right: 300px;
+  width: 150px;
+  height: 100px;
+  background-color: rgba(255, 20, 147, 0.6); /* Pink */
+}
+
+.section.toilet {
+  bottom: 200px;
+  right: 300px;
+  width: 150px;
+  height: 100px;
+  background-color: rgba(255, 0, 0, 0.6); /* Red */
+}
+
+.cart {
+  width: 30%;
+  padding: 20px;
+  background: white;
+  border-left: 1px solid #ccc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart h3 {
+  margin-top: 0;
+}
+
+.cart ul {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.cart ul li {
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.cart .total {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+#submitBidButton {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#submitBidButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 300px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  z-index: 10;
+}
+
+.popup h3 {
+  margin-top: 0;
+}
+
+.popup button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+
+.option-container {
+  margin: 10px 0;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.option-button {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+.option-description {
+  font-size: 14px;
+  color: #555;
+  margin-top: 5px;
+}
