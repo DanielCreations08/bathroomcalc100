@@ -198,21 +198,11 @@ const nodesConfig = {
 
     ],
     tablet: [
-      { id: "protective-measures", x: 50, y: 150, title: "Question 1 of 10 - Choose an Option", description: "Choose the level of protection to limit dust transfer." },
-      { id: "demo", x: 200, y: 300, title: "Question 2 of 10 - Choose an Option", description: "Select the type of demolition required for your project." },
-      { id: "shower", x: 400, y: 450, title: "Question 3 of 10 - Choose an Option", description: "Decide on the type of shower for your bathroom." },
-      { id: "shower-plumbing", x: 600, y: 600, title: "Question 4 of 10 - Choose an Option", description: "Choose the plumbing work required for the shower." },
-      { id: "tub", x: 100, y: 750, title: "Question 5 of 10 - Choose an Option", description: "Select the type of bathtub you want." },
-      { id: "flooring", x: 300, y: 900, title: "Question 6 of 10 - Choose an Option", description: "Pick the flooring material for your bathroom." },
-      { id: "drywall", x: 500, y: 1050, title: "Question 7 of 10 - Choose an Option", description: "Choose the drywall finish or replacement needed." },
-      { id: "paint", x: 700, y: 1200, title: "Question 8 of 10 - Choose an Option", description: "Select the type of painting for walls and ceiling." },
-      { id: "vanity-install", x: 780, y: 775, title: "Question 9 of 10 - Choose an Option", description: "Decide on the installation of your vanity." },
-      { id: "toilet-removal", x: 1273, y: 1072, title: "Question 10 of 10 - Choose an Option", description: "Select the option for toilet removal and replacement." }
     ],
     mobile: [
-            {
+        {
             id: "protective-measures",
-            x: 780, y: 180,
+            x: 359, y: 180,
             title: "Question 1 of 10 - Choose an Option",
             options: [
                 { 
@@ -227,15 +217,184 @@ const nodesConfig = {
                 }
             ]
         },
-      { id: "demo", x: 200, y: 200, title: "Question 2 of 10 - Choose an Option", description: "Select the type of demolition required for your project." },
-      { id: "shower", x: 20, y: 300, title: "Question 3 of 10 - Choose an Option", description: "Decide on the type of shower for your bathroom." },
-      { id: "shower-plumbing", x: 20, y: 400, title: "Question 4 of 10 - Choose an Option", description: "Choose the plumbing work required for the shower." },
-      { id: "tub", x: 20, y: 500, title: "Question 5 of 10 - Choose an Option", description: "Select the type of bathtub you want." },
-      { id: "flooring", x: 20, y: 600, title: "Question 6 of 10 - Choose an Option", description: "Pick the flooring material for your bathroom." },
-      { id: "drywall", x: 20, y: 700, title: "Question 7 of 10 - Choose an Option", description: "Choose the drywall finish or replacement needed." },
-      { id: "paint", x: 20, y: 800, title: "Question 8 of 10 - Choose an Option", description: "Select the type of painting for walls and ceiling." },
-      { id: "vanity-install", x: 780, y: 775, title: "Question 9 of 10 - Choose an Option", description: "Decide on the installation of your vanity." },
-      { id: "toilet-removal", x: 1273, y: 1072, title: "Question 10 of 10 - Choose an Option", description: "Select the option for toilet removal and replacement." }
+        {
+            id: "demo",
+            x: 359, y: 445,
+            title: "Question 2 of 10 - Choose an Option",
+            options: [
+                { 
+                    description: "This includes the removal of standard fixtures and demolition of the shower, vanity, and flooring.",
+                    label: "Standard Demo - $1000", 
+                    price: 1000 
+                },
+                { 
+                    description: "Heavy demolition includes the removal of drywall and/or tile flooring, beyond what is covered in our standard demo package.",
+                    label: "Heavy Demo - $1500", 
+                    price: 1500 
+                }
+            ]
+        },
+        {
+            id: "shower",
+            x: 359, y: 990,
+            title: "Question 3 of 10 - Choose an Option",
+            options: [
+                { 
+                    description: "Prefabricated tub surround installation for a quick, modern upgrade.",
+                    label: "Standard Tub Surround - $1000", 
+                    price: 1000 
+                },
+                { 
+                    description: "Standard tile installation, including waterproofing and grout, for a refined look.",
+                    label: "Standard Tile Design - $2500", 
+                    price: 2500 
+                },
+                { 
+                    description: "Installation of printed patterned or uniquely shaped tiles, including grout and waterproofing, for a distinct, luxurious finish.",
+                    label: "Custom Tile Design - $2750", 
+                    price: 2750 
+                }
+            ]
+        },
+        {
+            id: "shower-plumbing",
+            x: 134, y: 445,
+            title: "Question 4 of 10 - Choose an Option",
+            options: [
+                { 
+                    description: "Reconnect to existing plumbing for a straightforward setup.",
+                    label: "Connect to Existing Plumbing - $500", 
+                    price: 500 
+                },
+                { 
+                    description: "Install new water lines and drains for an upgraded plumbing system.",
+                    label: "Update Plumbing - 800", 
+                    price: 800
+                }
+            ]
+        },
+        {
+            id: "tub",
+            x: 134, y: 718,
+            title: "Question 5 of 10 - Choose an Option",
+            options: [
+                { 
+                    description: "Standard bathtub installation with basic plumbing.",
+                    label: "Standard Tub - $1000", 
+                    price: 1000 
+                },
+                { 
+                    description: "Installation of a prefabricated shower base.",
+                    label: "Shower Base - 1000", 
+                    price: 1000
+                },
+                { 
+                    description: "Custom tile base with a step for enhanced aesthetics and easier access.",
+                    label: "Tile Base with Step - $2500", 
+                    price: 2500 
+                },
+                { 
+                    description: "Flush tile base for a sleek, modern look.",
+                    label: "Flush Tile Base - $3500", 
+                    price: 3500 
+                }
+            ]
+        },
+        {
+            id: "flooring",
+            x: 585, y: 180,
+            title: "Question 6 of 10 - Choose an Option",
+            options: [
+                { 
+                    description: "Install plank flooring under 64 sq ft. Larger bathrooms will cost more.",
+                    label: "Luxury Vinyl Plank Floor - $750", 
+                    price: 750 
+                },
+                { 
+                    description: "Installation of standard tile flooring for your bathroom.",
+                    label: "Tile Floor - $2000", 
+                    price: 2000
+                },
+                { 
+                    description: "Custom tile flooring with a unique design to enhance bathroom aesthetics.",
+                    label: "Tile Floor with Design - $2250", 
+                    price: 2250 
+                },
+                { 
+                    description: "No changes will be made to the existing floor.",
+                    label: "Existing Floor (No Change) - $0", 
+                    price: 0 
+                }
+            ]
+        },
+        {
+            id: "drywall",
+            x: 585, y: 445,
+            title: "Question 7 of 10 - Choose an Option",
+            options: [
+                { 
+                    description: "Light Spackling",
+                    label: "Spackle Only - $0", 
+                    price: 0 
+                },
+                { 
+                    description: "Light skim coat over drywall for a refreshed look.",
+                    label: "Light Skim Taping Coat - $500", 
+                    price: 500
+                },
+                { 
+                    description: "Full skim coat for a smoother wall finish.",
+                    label: "Full Skim Coat - $1000", 
+                    price: 1000 
+                },
+                {               
+                    description: "Includes hanging new drywall and taping seams for a complete finish.",
+                    label: "Hang and Tape Drywall - $1800", 
+                    price: 1800 
+                }
+            ]
+        },
+        {
+            id: "paint",
+            x: 585, y: 718,
+            title: "Question 8 of 10 - Choose an Option",
+            options: [
+                { 
+                    description: "Standard paint finish for walls and ceiling.",
+                    label: "Paint Walls and Ceiling - $400", 
+                    price: 400
+                },
+                { 
+                    description: "Contractor will not paint",
+                    label: "No Paint - $0", 
+                    price: 0
+                }
+            ]
+        },
+        {
+            id: "vanity-install",
+            x: 359, y: 718,
+            title: "Question 9 of 10 - Choose an Option",
+            options: [
+                { 
+                    description: "Installation of a single vanity, including faucet and plumbing connections.",
+                    label: "Single Vanity Install - $425", 
+                    price: 425
+                }
+            ]
+        },
+        {
+            id: "toilet-removal",
+            x: 134, y: 718,
+            title: "Question 10 of 10 - Choose an Option",
+            options: [
+                { 
+                    description: "Removal of the old toilet and installation of a new toilet.",
+                    label: "Toilet Removal and Install - $250", 
+                    price: 250
+                }
+            ]
+        },
     ],
   };
 
