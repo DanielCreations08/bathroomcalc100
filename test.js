@@ -398,6 +398,34 @@ const nodesConfig = {
     ],
   };
 
+
+  const materials = {
+    demo: {
+      'Standard Demo - $1000': [
+        { name: 'Waste Removal Fee', cost: 300, description: 'Fee for removal and proper disposal of all debris generated from the demo.' },
+        { name: 'Protective Measures', cost: 200, description: 'Protective materials used during demolition to ensure no damage to the rest of the house.' },
+    ],
+      'Heavy Demo': [
+        { name: 'Waste Removal Fee', cost: 350, description: 'Increased fee due to additional waste from heavy demolition.' },
+        { name: 'Protective Measures', cost: 200, description: 'Protective materials used during demolition to ensure no damage to the rest of the house.' },
+      ],
+    },
+    shower: {
+      'Standard Tub Surround': [
+        { name: 'Tub Surround Material', cost: 425, description: 'Includes all materials necessary for the tub surround installation.' },
+      ],
+      'Standard Tile Design': [
+        { name: 'Tile Supplies', cost: 500, description: 'Tile supplies include cement board, screws, mortar, and grout. Tile is NOT included.' },
+      ],
+      'Custom Tile Design': [
+        { name: 'Patterned Tiles', cost: 1200, description: 'Patterned tiles for a luxurious look. Does NOT include installation labor.' },
+        { name: 'Tile Adhesive', cost: 150, description: 'Adhesive used for installing the tiles securely.' },
+      ],
+    },
+    // Continúa con las demás configuraciones de materiales...
+  };
+  
+
   let currentNodeIndex = 0;
   
   function detectNodes() {
@@ -509,14 +537,14 @@ function nextNode() {
   detectNodes();
 
   function addToCart(item, price, event) {
-    event.preventDefault(); // Previene que el formulario se envíe y recargue la página
+    event.preventDefault(); // Evita el envío de formularios
 
     const cartItems = document.getElementById('cart-items');
     const totalBudgetElement = document.getElementById('total-budget');
 
     // Añade el ítem al carrito
     const listItem = document.createElement('li');
-    listItem.textContent = `${item} - $${price}`;
+    listItem.textContent = `${item}`;
     cartItems.appendChild(listItem);
 
     // Actualiza el presupuesto total
@@ -524,6 +552,41 @@ function nextNode() {
     const newTotal = currentTotal + price;
     totalBudgetElement.textContent = newTotal;
 
-    // Llama a la función para moverse al siguiente nodo
-    nextNode();
+    // Añade materiales asociados
+    const nodeId = nodes[currentNodeIndex].id; // Nodo actual
+    const materialsForNode = materials[nodeId] ? materials[nodeId][item] : [];
+
+    // Si hay materiales asociados, muestra el pop-up
+    if (materialsForNode && materialsForNode.length > 0) {
+        showMaterialsPopup(materialsForNode);
+    } else {
+        // Pasa al siguiente nodo directamente si no hay materiales
+        nextNode();
+    }
+}
+
+function showMaterialsPopup(materials) {
+    const materialsList = document.getElementById('materials-list');
+    materialsList.innerHTML = ''; // Limpia materiales previos
+
+    materials.forEach(material => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${material.name} - $${material.cost}`;
+        materialsList.appendChild(listItem);
+    });
+
+    const materialsPopup = document.getElementById('materials-popup');
+    materialsPopup.style.display = 'block';
+    setTimeout(() => {
+        materialsPopup.classList.add('show');
+    }, 10);
+}
+
+function closeMaterialsPopup() {
+    const materialsPopup = document.getElementById('materials-popup');
+    materialsPopup.classList.remove('show');
+    setTimeout(() => {
+        materialsPopup.style.display = 'none';
+        nextNode(); // Pasa al siguiente nodo después de cerrar el pop-up
+    }, 500);
 }
