@@ -404,26 +404,86 @@ const nodesConfig = {
       'Standard Demo - $1000': [
         { name: 'Waste Removal Fee', cost: 300, description: 'Fee for removal and proper disposal of all debris generated from the demo.' },
         { name: 'Protective Measures', cost: 200, description: 'Protective materials used during demolition to ensure no damage to the rest of the house.' },
-    ],
-      'Heavy Demo': [
+      ],
+      'Heavy Demo - $1500': [
         { name: 'Waste Removal Fee', cost: 350, description: 'Increased fee due to additional waste from heavy demolition.' },
         { name: 'Protective Measures', cost: 200, description: 'Protective materials used during demolition to ensure no damage to the rest of the house.' },
       ],
     },
     shower: {
-      'Standard Tub Surround': [
+      'Standard Tub Surround - $1000': [
         { name: 'Tub Surround Material', cost: 425, description: 'Includes all materials necessary for the tub surround installation.' },
       ],
-      'Standard Tile Design': [
+      'Standard Tile Design - $2500': [
         { name: 'Tile Supplies', cost: 500, description: 'Tile supplies include cement board, screws, mortar, and grout. Tile is NOT included.' },
       ],
-      'Custom Tile Design': [
+      'Custom Tile Design - $2750': [
         { name: 'Patterned Tiles', cost: 1200, description: 'Patterned tiles for a luxurious look. Does NOT include installation labor.' },
         { name: 'Tile Adhesive', cost: 150, description: 'Adhesive used for installing the tiles securely.' },
       ],
     },
-    // Continúa con las demás configuraciones de materiales...
+    'shower-plumbing': {
+      'Connect to Existing Plumbing': [
+        { name: 'Reconnection Supplies', cost: 200, description: 'Includes supplies for connecting to existing plumbing.' },
+      ],
+      'Update Plumbing - 800': [
+        { name: 'Plumbing Supplies', cost: 450, description: 'Includes new drains, water lines, and shower valve kit.' },
+      ],
+    },
+    tub: {
+      'Standard Tub - $1000': [
+        { name: 'Standard Tub', cost: 450, description: 'A standard tub between the sizes of 28-32 inches.' },
+      ],
+      'Shower Base - 1000': [
+        { name: 'Standard Shower Pan', cost: 450, description: 'A standard shower pan between the sizes of 28-32 inches.' },
+      ],
+      'Tile Base with Step - $2500': [
+        { name: 'Tile Base Kit', cost: 950, description: 'Tile base with a step comes with a kit 5x7 max size. It comes with kit, waterproofing, mortar, grout, spacers, etc. Tile is NOT included.' },
+      ],
+      'Flush Tile Base - $3500': [
+        { name: 'Flush Tile Base Kit', cost: 1100, description: 'Flush Tile bases are for safety and luxury finishes. Materials included: lumber, plywood, shower kit, waterproofing, mortar, grout, spacers, etc. Tile is NOT included.' },
+      ],
+    },
+    flooring: {
+      'Luxury Vinyl Plank Floor - $750': [
+        { name: 'Luxury Vinyl Plank', cost: 750, description: 'Includes all materials required for luxury vinyl plank installation.' },
+      ],
+      'Tile Floor - $2000': [
+        { name: 'Tile Floor Supplies', cost: 200, description: 'Includes cement boards, screws, mortar, grout, leveling clips, and anything else needed to install tile. Tile is NOT included.' },
+      ],
+      'Tile Floor with Design - $2250': [
+        { name: 'Tile Floor Supplies with Design', cost: 200, description: 'Includes cement boards, screws, mortar, grout, leveling clips, and anything else needed to install tile with a design. Tile is NOT included.' },
+      ],
+    },
+    drywall: {
+      'Light Skim Taping Coat - $500': [
+        { name: 'Skim Coat Materials', cost: 250, description: 'Includes joint compound, tape, and tools for a light skim coat.' },
+      ],
+      'Full Skim Coat - $1000': [
+        { name: 'Full Skim Coat Materials', cost: 500, description: 'Includes additional joint compound and tools for a full skim coat.' },
+      ],
+      'Hang and Tape Drywall - $1800': [
+        { name: 'Drywall Sheets', cost: 800, description: 'Includes drywall sheets, screws, and tape for installation.' },
+      ],
+    },
+    paint: {
+      'Paint Walls and Ceiling - $400': [
+        { name: 'Paint Supplies', cost: 200, description: 'Includes primer, paint, and basic tools for painting walls and ceilings.' },
+      ],
+    },
+    'vanity-install': {
+      'Single Vanity Install - $425': [
+        { name: 'Vanity Installation Supplies', cost: 200, description: 'Includes plumbing connections, sealant, and fasteners.' },
+      ],
+    },
+    'toilet-removal': {
+      'Toilet Removal and Install - $250': [
+        { name: 'Toilet Installation Supplies', cost: 100, description: 'Includes wax ring, bolts, and sealant for installation.' },
+      ],
+    },
   };
+  
+
   
 
   let currentNodeIndex = 0;
@@ -542,7 +602,15 @@ function nextNode() {
     const cartItems = document.getElementById('cart-items');
     const totalBudgetElement = document.getElementById('total-budget');
 
-    // Añade el ítem al carrito
+    // Añade el ítem seleccionado como parte de Labor Costs
+    const laborCostHeader = document.getElementById('labor-cost-header');
+    if (!laborCostHeader) {
+        const laborHeader = document.createElement('li');
+        laborHeader.id = 'labor-cost-header';
+        laborHeader.textContent = 'Labor Costs';
+        laborHeader.style.fontWeight = 'bold';
+        cartItems.appendChild(laborHeader);
+    }
     const listItem = document.createElement('li');
     listItem.textContent = `${item}`;
     cartItems.appendChild(listItem);
@@ -552,27 +620,56 @@ function nextNode() {
     const newTotal = currentTotal + price;
     totalBudgetElement.textContent = newTotal;
 
-    // Añade materiales asociados
-    const nodeId = nodes[currentNodeIndex].id; // Nodo actual
-    const materialsForNode = materials[nodeId] ? materials[nodeId][item] : [];
+    // Cierra el pop-up actual antes de continuar
+    const popup = document.getElementById('popup');
+    popup.classList.remove('show');
+    setTimeout(() => {
+        popup.style.display = 'none';
 
-    // Si hay materiales asociados, muestra el pop-up
-    if (materialsForNode && materialsForNode.length > 0) {
-        showMaterialsPopup(materialsForNode);
-    } else {
-        // Pasa al siguiente nodo directamente si no hay materiales
-        nextNode();
-    }
+        // Añade materiales asociados
+        const nodeId = nodes[currentNodeIndex].id; // Nodo actual
+        const materialsForNode = materials[nodeId] ? materials[nodeId][item] : [];
+
+        if (materialsForNode && materialsForNode.length > 0) {
+            // Muestra el pop-up de materiales
+            showMaterialsPopup(materialsForNode);
+        } else {
+            // Pasa al siguiente nodo directamente si no hay materiales
+            nextNode();
+        }
+    }, 500); // Espera antes de mostrar el pop-up de materiales
 }
 
 function showMaterialsPopup(materials) {
     const materialsList = document.getElementById('materials-list');
     materialsList.innerHTML = ''; // Limpia materiales previos
 
+    // Añade los materiales al carrito bajo "Materials Added"
+    const cartItems = document.getElementById('cart-items');
+    const materialsHeader = document.getElementById('materials-cost-header');
+    if (!materialsHeader) {
+        const materialsCostHeader = document.createElement('li');
+        materialsCostHeader.id = 'materials-cost-header';
+        materialsCostHeader.textContent = 'Materials Added';
+        materialsCostHeader.style.fontWeight = 'bold';
+        cartItems.appendChild(materialsCostHeader);
+    }
+
     materials.forEach(material => {
         const listItem = document.createElement('li');
-        listItem.textContent = `${material.name} - $${material.cost}`;
-        materialsList.appendChild(listItem);
+        listItem.textContent = `${material.name}: $${material.cost}`;
+        cartItems.appendChild(listItem);
+
+        // Actualiza el total del presupuesto
+        const totalBudgetElement = document.getElementById('total-budget');
+        const currentTotal = parseInt(totalBudgetElement.textContent) || 0;
+        const newTotal = currentTotal + material.cost;
+        totalBudgetElement.textContent = newTotal;
+
+        // Añade material al pop-up de materiales
+        const popupListItem = document.createElement('li');
+        popupListItem.textContent = `${material.name} - $${material.cost}`;
+        materialsList.appendChild(popupListItem);
     });
 
     const materialsPopup = document.getElementById('materials-popup');
